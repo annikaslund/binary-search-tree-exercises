@@ -70,7 +70,7 @@ class BinarySearchTree {
 
   dfsPreOrder(node = this.root, nodeVals = []) {
     nodeVals.push(node.val);
-    
+
     if (node.left) this.dfsPreOrder(node.left, nodeVals);
     if (node.right) this.dfsPreOrder(node.right, nodeVals)
 
@@ -80,15 +80,23 @@ class BinarySearchTree {
   /** dfsInOrder(): Traverse the array using in-order DFS.
    * Return an array of visited nodes. */
 
-  dfsInOrder() {
+  dfsInOrder(node = this.root, nodeVals = []) {
+    if (node.left) this.dfsInOrder(node.left, nodeVals);
+    nodeVals.push(node.val);
+    if (node.right) this.dfsInOrder(node.right, nodeVals);
 
+    return nodeVals;
   }
 
   /** dfsPostOrder(): Traverse the array using post-order DFS.
    * Return an array of visited nodes. */
 
-  dfsPostOrder() {
+  dfsPostOrder(node = this.root, nodeVals = []) {
+    if (node.left) this.dfsPostOrder(node.left, nodeVals);
+    if (node.right) this.dfsPostOrder(node.right, nodeVals);
+    nodeVals.push(node.val);
 
+    return nodeVals;
   }
 
   /** bfs(): Traverse the array using BFS.
