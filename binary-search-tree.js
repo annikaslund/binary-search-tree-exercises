@@ -21,16 +21,16 @@ class BinarySearchTree {
 
     let current = this.root;
 
-    while (current){
-      if (val < current.val && current.left === null){
+    while (current) {
+      if (val < current.val && current.left === null) {
         current.left = newNode;
-      } else if (val > current.val && current.right === null){
+      } else if (val > current.val && current.right === null) {
         current.right = newNode;
       }
 
       current = val < current.val
-                ? current.left 
-                : current.right;
+        ? current.left
+        : current.right;
     }
 
     return this;
@@ -49,12 +49,12 @@ class BinarySearchTree {
   find(val) {
     let current = this.root;
 
-    while (current){
+    while (current) {
       if (current.val === val) return current;
 
-      current = val < current.val 
-                ? current.left 
-                : current.right;
+      current = val < current.val
+        ? current.left
+        : current.right;
     }
   }
 
@@ -68,8 +68,13 @@ class BinarySearchTree {
   /** dfsPreOrder(): Traverse the array using pre-order DFS.
    * Return an array of visited nodes. */
 
-  dfsPreOrder() {
+  dfsPreOrder(node = this.root, nodeVals = []) {
+    nodeVals.push(node.val);
+    
+    if (node.left) this.dfsPreOrder(node.left, nodeVals);
+    if (node.right) this.dfsPreOrder(node.right, nodeVals)
 
+    return nodeVals;
   }
 
   /** dfsInOrder(): Traverse the array using in-order DFS.
@@ -113,7 +118,7 @@ class BinarySearchTree {
    * Otherwise return undefined. */
 
   findSecondHighest() {
-    
+
   }
 }
 
